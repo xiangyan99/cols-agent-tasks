@@ -3,7 +3,7 @@
 ![Replace Tokens Task](../../images/ss_replaceTokens.png)
 
 ## Overview
-This task invokes replaces tokens in a file with values from the matching varialbes set in the Environment.
+This task invokes replaces tokens in a file with values from the matching variables set in the Environment.
 
 ## Settings
 The task requires the following settings:
@@ -32,6 +32,8 @@ Drop the Task into the build or release, and then set the Target File to the pat
 a global variable or an environment variable called "SiteName" and give it the value you want the token to be
 replaced with. That's it!
 
+If you wish to recurse through subdirectories of the Source Path, set the Target File Pattern to **\MyFileRegex
+
 ## Different Token Identifiers
 If your tokens have a different identifier, then you can change the Token Regex. For example, if your tokens
 are of the form `--Token--`, then you can change the Regex to `--(\w+)--` and the task will work.
@@ -57,3 +59,13 @@ You can see all the environment variables in the logs for a deployment.
     
     Hopefully [this issue](https://github.com/Microsoft/vsts-task-lib/issues/48) will be implemented and I can 
     remove this "hack" - thanks to [Di](https://github.com/dixu99) for the contribution!
+
+## Using Tokenizer with ReplaceTokens
+It is expected that this combination will be used for DotNet Core applications. You will likely want to tokenize the appsettings.json file during the build and then use the ReplaceTokens task to fill in
+values during the Release. This is possible, but you will need to change the defaults for the ReplaceTokens task in order to work with
+the json "namespaces". The following process will get you going:
+
+1. Use the [Tokenizer](../Tokenizer) to tokenize the appsettings.json file as described above.
+2. On the Release, enter the name of the tokens but substitute an `_` (underscore) for the `.` (period). Using the above example, you'd need three environment
+variables: `ConnectionStrings_DefaultConnection`, `Tricky_Gollum` and `Tricky_Hobbit`.
+3. On the Release, add a ReplaceTokens task and change the default Token Regex parameter to `__(\w+[\.\w+]*)__`

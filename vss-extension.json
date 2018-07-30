@@ -1,0 +1,195 @@
+{
+    "manifestVersion": 1,
+    "id": "colinsalmcorner-buildtasks",
+    "name": "Colin's ALM Corner Build & Release Tools",
+    "version": "1.0.36",
+    "publisher": "colinsalmcorner",
+    "public": true,
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/colindembovsky/cols-agent-tasks"
+    },
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Build extensions from Colin's ALM Corner to make life easier! Replace tokens, tag builds, version assemblies, compare dacpacs, coverage gate and more.",
+    "categories": [
+        "Build and release"
+    ],
+    "tags": [
+        "version", "versioning",
+        "build",
+        "replacement",
+        "replace",
+        "tokens",
+        "tokenize",
+        "dacpac", "SSDT",
+        "coverage", "tag"
+    ],
+    "screenshots": [
+        {
+            "path": "images/ss_replaceTokens.png"
+        },
+        {
+            "path": "images/ss_versionAssemblies.png"
+        },
+        {
+            "path": "images/ss_DacPacChangeReport.png"
+        },
+        {
+            "path": "images/ss_tokenize.png"
+        },
+        {
+            "path": "images/ss_coverageGate.png"
+        }  
+    ],
+    "content": {
+        "details": {
+            "path": "extension-overview.md"
+        },
+        "license": {
+            "path": "license.txt"
+        }
+    },
+    "links": {
+        "home": {
+            "uri": "http://colinsalmcorner.com"
+        },
+        "repository": {
+            "uri": "https://github.com/colindembovsky/cols-agent-tasks"
+        },
+        "issues": {
+            "uri": "https://github.com/colindembovsky/cols-agent-tasks/issues"
+        }
+    },
+    "branding": {
+        "color": "rgb(36, 43, 50)",
+        "theme": "dark"
+    },
+    "icons": {
+        "default": "images/extension-icon.png"        
+    },
+    "files": [
+        {
+            "path": "Tasks/ReplaceTokens"
+        },
+        {
+            "path": "Tasks/VersionAssemblies"
+        },
+        {
+            "path": "Tasks/DacPacReport"
+        },
+        {
+            "path": "Tasks/CoverageGate"
+        },
+        {
+            "path": "Tasks/TagBuild"
+        },
+        {
+            "path": "Tasks/AzureWebDeploy"
+        },
+        {
+            "path": "Tasks/Tokenizer"
+        },
+        {
+            "path": "Tasks/RouteTraffic"
+        },
+        {
+            "path": "Tasks/DockerPublish"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "replace-tokens-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/ReplaceTokens"
+            }
+        },
+        {
+            "id": "version-assemblies-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/VersionAssemblies"
+            }
+        },
+        {
+            "id": "dacpac-report-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/DacPacReport"
+            }
+        },
+        {
+            "id": "tokenizer-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/Tokenizer"
+            }
+        },
+        {
+            "id": "coverage-gate-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/CoverageGate"
+            }
+        },
+        {
+            "id": "tag-build-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/TagBuild"
+            }
+        },
+        {
+            "id": "azure-webdeploy-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/AzureWebDeploy"
+            }
+        },
+        {
+            "id": "docker-publish-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/DockerPublish"
+            }
+        },
+        {
+            "id": "route-traffic-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Tasks/RouteTraffic"
+            }
+        }
+    ]
+}

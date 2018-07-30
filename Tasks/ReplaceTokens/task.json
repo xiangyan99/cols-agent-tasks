@@ -11,9 +11,9 @@
     "Release"
   ],
   "version": {
-    "Major": "0",
-    "Minor": "0",
-    "Patch": "15"
+    "Major": "1",
+    "Minor": "2",
+    "Patch": "26"
   },
   "groups": [
     {
@@ -30,15 +30,15 @@
       "type": "filePath",
       "label": "Source Path",
       "defaultValue": "",
-      "helpMarkDown": "Path to the file(s) containing tokens.",
-      "required": true
+      "helpMarkDown": "Path to the file(s) containing tokens. Leave empty to use the sources directory. NOTE: this is case sensitive for non-Windows systems. This should be a path containing the file, not the file itself.",
+      "required": false
     },
     {
       "name": "filePattern",
       "type": "string",
       "label": "Target File Pattern",
       "defaultValue": "*.config",
-      "helpMarkDown": "File pattern to find in source path. Supports minimatch.",
+      "helpMarkDown": "File pattern to find in source path. Supports minimatch. NOTE: this is case sensitive for non-Windows systems.",
       "required": true
     },
     {

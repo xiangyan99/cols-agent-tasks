@@ -1,9 +1,22 @@
 {
-  "name": "ColinsALMCorner.BuildTasks",
+  "name": "colinsalmcorner-buildtasks",
   "version": "0.1.1",
   "description": "Custom build tasks for TFS or VSO",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install-libs-cov-gate": "cd Tasks/CoverageGate && yarn install",
+    "install-libs-rep-tokens": "cd Tasks/ReplaceTokens && yarn install",
+    "install-libs-ver-asms": "cd Tasks/VersionAssemblies && yarn install",
+    "install-libs-tokenizer": "cd Tasks/Tokenizer && yarn install",
+    "install-libs-tagBuild": "cd Tasks/TagBuild && yarn install",
+    "install-libs-routeTraffic": "cd Tasks/RouteTraffic && yarn install",
+    "install-libs": "yarn install-libs-cov-gate && yarn install-libs-rep-tokens && yarn install-libs-ver-asms && yarn install-libs-tokenizer && yarn install-libs-tagBuild && yarn install-libs-routeTraffic",
+    "build": "tsc",
+    "build-prod": "yarn install-libs && tsc",
+    "junittest": "yarn build && cross-env NODE_ENV=test mocha tests/_testsuite.ts --compilers ts:ts-node/register --require source-map-support/register --full-trace --timeout 45000 --bail --reporter mocha-junit-reporter --reporter spec",
+    "test": "yarn build && cross-env NODE_ENV=test mocha tests/_testsuite.ts --compilers ts:ts-node/register --bail --reporter spec",
+    "debugtest": "yarn build && cross-env NODE_ENV=debugtest mocha tests/_testsuite.ts --compilers ts:ts-node/register --bail",
+    "cover": "nyc yarn junittest",
+    "prepextension": "yarn install-libs && yarn cover"
   },
   "repository": {
     "type": "git",
@@ -21,13 +34,57 @@
   },
   "homepage": "https://github.com/colindembovsky/cols-agent-tasks",
   "devDependencies": {
-    "minimatch": "^2.0.10",
-    "shelljs": "^0.5.3",
-    "vso-task-lib": "^0.5.1"
+    "@types/gulp-mocha": "^0.0.31",
+    "@types/mocha": "^2.2.44",
+    "@types/mockery": "^1.4.29",
+    "@types/node": "^7.0.13",
+    "@types/q": "^1.0.6",
+    "@types/shelljs": "^0.7.6",
+    "assert": "^1.4.1",
+    "cross-env": "^4.0.0",
+    "istanbul": "^0.4.5",
+    "minimatch": "^3.0.4",
+    "mocha": "^3.2.0",
+    "mocha-junit-reporter": "^1.15.0",
+    "mockery": "^2.1.0",
+    "nyc": "^10.2.0",
+    "path": "^0.12.7",
+    "shelljs": "^0.7.8",
+    "ts-node": "^3.3.0",
+    "source-map-support": "^0.5.6",
+    "typescript": "^2.6.1"
   },
   "main": "index.js",
   "dependencies": {
-    "process": "^0.11.1",
-    "q": "^1.4.1"
+    "process": "^0.11.10",
+    "q": "^1.5.1",
+    "vso-node-api": "^6.2.8-preview",
+    "vsts-task-lib": "^2.1.0"
+  },
+  "nyc": {
+    "instrument": true,
+    "include": [
+      "Tasks/VersionAssemblies/*.js",
+      "Tasks/ReplaceTokens/*.js",
+      "Tasks/Tokenizer/*.js",
+      "Tasks/CoverageGate/*.js",
+      "Tasks/TagBuild/*.js",
+      "Tasks/RouteTraffic/*.js",
+      "test/**/*.ts"
+    ],
+    "extension": [
+      ".ts",
+      "*.js"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text",
+      "cobertura",
+      "html"
+    ],
+    "source-map": true,
+    "all": true
   }
 }

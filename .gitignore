@@ -195,3 +195,13 @@ ModelManifest.xml
 /Package
 
 *.vsix
+**/*.tar.gz
+
+Tasks/**/*.js
+tests/**/*.js
+tests/**/working
+
+coverage
+test-results.xml
+.taskkey
+.\nyc_output
